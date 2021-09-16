@@ -249,7 +249,7 @@ const datenschutzText =
     </PageContainer>
   );
 };
-ContactPageTemplate.propTypes  = {
+/* ContactPageTemplate.propTypes  = {
   title: PropTypes.string,
   name: PropTypes.string,
   address: PropTypes.string,
@@ -266,11 +266,11 @@ ContactPageTemplate.propTypes  = {
   confirmation: PropTypes.string,
   errorMessage: PropTypes.string,
   agreeMessage: PropTypes.string,
-};
+}; */
 interface IDataLoc{
   dataLoc:{
     data:any,
-    location:string
+    location:IContact["contact"]["location"],
   }
 }
 const ContactPage :React.FC<IDataLoc["dataLoc"]> = ({ data, location }) => {
