@@ -8,7 +8,9 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import AboutBlocks from '../components/AboutBlocks/AboutBlocks';
 import PageContainer from '../components/PageContainer';
 import SEO from '../components/SEO';
-
+interface IAbout{
+  
+}
 export const AboutPageTemplate = ({
   title,
   generalInfo,
