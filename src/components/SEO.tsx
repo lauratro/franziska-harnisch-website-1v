@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { withPrefix, useStaticQuery, graphql } from 'gatsby';
 
+interface SEOProps {
+  description?: string,
+  lang?: string,
+  meta?: Array<{name: string, content: string}>,
+  title?: string
+  image?:string,
+metaImage?:string,
+metaTitle?:string,
+location:any,
+}
 // highlight-next-line
-function SEO({ description, lang, meta, image, title, location }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta=[], image, title, location }:SEOProps) {
+  const { site }:any = useStaticQuery(
     graphql`
       query {
         site {
@@ -122,7 +132,7 @@ function SEO({ description, lang, meta, image, title, location }) {
   );
 }
 
-SEO.defaultProps = {
+/* SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
@@ -137,6 +147,6 @@ SEO.propTypes = {
   image: PropTypes.string,
   // highlight-next-line
   pathname: PropTypes.string,
-};
+}; */
 
 export default SEO;
