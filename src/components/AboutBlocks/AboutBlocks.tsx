@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid } from '@material-ui/core';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { SkipPreviousRounded } from '@material-ui/icons';
+import {IAbout} from "../../templates/about-page"
 const useStyles = makeStyles(theme => ({
     displayFlexCenter: {
         display: "flex",
@@ -90,7 +91,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-export default function AboutBlocks({ generalInfo, ausbildung, preise, einzelaustellung, gruppenaustellung, projekte }) {
+export default function AboutBlocks({ generalInfo, ausbildung, preise, einzelaustellung, gruppenaustellung, projekte }:IAbout["about"]) {
     const classes = useStyles();
 
     return (<Grid container spacing={1} className={classes.containerBlocks} >

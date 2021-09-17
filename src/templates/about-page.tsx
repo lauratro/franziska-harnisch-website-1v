@@ -10,7 +10,7 @@ import PageContainer from '../components/PageContainer';
 import SEO from '../components/SEO';
 
 
-interface IAbout{
+export interface IAbout{
   about:{
     title:string,
     generalInfo:{
