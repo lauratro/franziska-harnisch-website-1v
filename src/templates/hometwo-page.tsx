@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby';
 import styled, { css, keyframes } from 'styled-components';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
-import EventsFrontPage from '../components/EventsFrontPage/EventsFrontPage';
+import {EventsFrontPage} from '../components/EventsFrontPage/EventsFrontPage';
 import PictureHometwo from '../components/PictureHometwo/pictureHometwo';
 import PictureHomeMob from '../components/PictureHomeMob/PictureHomeMob';
 import PageContainer from '../components/PageContainer';
@@ -25,18 +25,13 @@ display:"block",
     },
   },
 }));
-interface IHome{
+export interface IHome{
   home:{
     image:string,
     title:string,
     description:string,
-    event:{
-      comingTitle: string,
-      futureEvent: string,
-      lastTitle: string,
-      lastEvent:string,
-    },
-    intro:{
+    event:IEv["event"]
+      intro:{
       blurbs:{
         image:string,
         text:string,
@@ -45,6 +40,14 @@ interface IHome{
     },
     location:IAbout["about"]["location"]
   }
+}
+export interface IEv{
+  event:{
+    comingTitle: string,
+    futureEvent: string,
+    lastTitle: string,
+    lastEvent:string,
+  },
 }
 export const HometwoTemplate:React.FC<IHome["home"]> = ({ image, title, event, intro, location }) => {
   console.log(intro.blurbs);
@@ -63,7 +66,7 @@ export const HometwoTemplate:React.FC<IHome["home"]> = ({ image, title, event, i
         flexDirection: 'column',
       }} */
       >
-        <EventsFrontPage events={event} />
+        <EventsFrontPage event={event} />
         <div className={classes.largeScreen}><PictureHometwo pic={intro.blurbs} /></div>
         <div className={classes.mobScreen}><PictureHomeMob pic={intro.blurbs} /></div>
    

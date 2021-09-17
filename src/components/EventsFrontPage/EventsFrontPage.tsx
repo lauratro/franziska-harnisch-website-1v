@@ -5,6 +5,9 @@ import { Grid } from '@material-ui/core';
 import './EventsFrontPage.css';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { NavBarContext } from '../../context/NavbarContext';
+import { IEv} from "../../templates/hometwo-page"
+
+
 
 const useStyles = makeStyles((theme) => ({
   animatedText: {
@@ -83,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventsFrontPage({ events }) {
+export const EventsFrontPage: React.FC<IEv>=({ event} ) =>{
   const classes = useStyles();
   const { negZIndex } = useContext(NavBarContext);
 
@@ -95,15 +98,15 @@ export default function EventsFrontPage({ events }) {
             className={`${classes.textEvent} ${classes.fontSizeTitle}`}
             style={{ zIndex: '-1000' }}
           >
-            {events.comingTitle}
+            {event.comingTitle}
           </h3>
         ) : (
           <h3 className={`${classes.textEvent} ${classes.fontSizeTitle}`}>
-            {events.comingTitle}
+            {event.comingTitle}
           </h3>
         )}
 
-        <p className={classes.animatedText}>{events.futureEvent}</p>
+        <p className={classes.animatedText}>{event.futureEvent}</p>
       </Grid>
       <Grid item xs={12} md={6} className={classes.columnDir}>
         {negZIndex ? (
@@ -111,15 +114,15 @@ export default function EventsFrontPage({ events }) {
             className={`${classes.textEvent} ${classes.fontSizeTitle}`}
             style={{ zIndex: '-1000' }}
           >
-            {events.lastTitle}
+            {event.lastTitle}
           </h3>
         ) : (
           <h3 className={`${classes.textEvent} ${classes.fontSizeTitle}`}>
-            {events.lastTitle}
+            {event.lastTitle}
           </h3>
         )}
 
-        <p className={classes.animatedText}>{events.lastEvent}</p>
+        <p className={classes.animatedText}>{event.lastEvent}</p>
       </Grid>
     </Grid>  
   );
