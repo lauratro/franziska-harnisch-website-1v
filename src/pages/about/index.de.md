@@ -2,9 +2,6 @@
 titleWebsite: About
 path: /about
 templateKey: about-page
-​      - text: 2019  A Place to be - 50 Jahre Verein Symposium Lindabrunn 114
-  über Marzahn, Berlin International Festival of the Arts The Walls We Built,
-  Kampala (UGA), Hildesheim, Berlin
 title: About me
 description: This is my portfolio
 image: https://res.cloudinary.com/dcyfdwhvk/image/upload/c_scale,f_auto,q_100,w_2400/v1628771030/Spontane_Oase_Diplom_Franziska_Harnisch_46_znvbc1.jpg

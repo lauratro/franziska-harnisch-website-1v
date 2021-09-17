@@ -8,10 +8,73 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import AboutBlocks from '../components/AboutBlocks/AboutBlocks';
 import PageContainer from '../components/PageContainer';
 import SEO from '../components/SEO';
+
+
 interface IAbout{
-  
+  about:{
+    title:string,
+    generalInfo:{
+      name:string,
+      address:string,
+      website:string,
+      email:string,
+    },
+    ausbildung:{
+      title:string,
+      texts:{
+        text:string
+      }[]
+    },
+    preise:{
+      title:string,
+      texts:{
+        text:string
+      }[]
+    },
+    einzelaustellung:{
+      title:string,
+      texts:{
+        text:string,
+        link:string,
+      }[]
+    },
+    gruppenaustellung:{
+      title:string,
+      texts:{
+        text:string,
+        link:string,
+      }[]
+    },
+    projekte:{
+      title:string,
+      texts:{
+        text:string,
+        link:string,
+      }[]
+    },
+    location:{
+      hash: string,
+      host: string,
+      hostname: string,
+      href: string,
+      key: string,
+      origin: string,
+      pathname: string,
+      port: string,
+      protocol: string,
+      search: string,
+      state:{
+        key:string,
+      }
+      
+    },
+    cv:{
+      text:string,
+      link:string
+    }[],
+  }
 }
-export const AboutPageTemplate = ({
+export const AboutPageTemplate :React.FC<IAbout["about"]> = ({
   title,
   generalInfo,
   ausbildung,
@@ -46,7 +109,7 @@ export const AboutPageTemplate = ({
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  coursor: 'pointer',
+                  cursor: 'pointer',
                 }}
               >
                 <a
@@ -65,7 +128,7 @@ export const AboutPageTemplate = ({
   );
 };
 
-AboutPageTemplate.propTypes = {
+/* AboutPageTemplate.propTypes = {
   title: PropTypes.string,
   generalInfo: PropTypes.shape({
     name: PropTypes.string,
@@ -94,9 +157,14 @@ AboutPageTemplate.propTypes = {
     texts: PropTypes.array,
   }),
    cv: PropTypes.array,
-};
-
-const AboutPage = ({ data, location }) => {
+}; */
+interface IDataLoc{
+  dataLoc:{
+    data:any,
+    location:IAbout["about"]["location"],
+  }
+}
+const AboutPage:React.FC<IDataLoc["dataLoc"]> =  ({ data, location }) => {
   const { frontmatter } = data.markdownRemark;
   console.log('info', frontmatter.generalInfo);
   return (
@@ -112,7 +180,6 @@ const AboutPage = ({ data, location }) => {
         title={frontmatter.title}
         generalInfo={frontmatter.generalInfo}
         ausbildung={frontmatter.ausbildung}
-        texts={frontmatter.texts}
         preise={frontmatter.preise}
         einzelaustellung={frontmatter.einzelaustellung}
         gruppenaustellung={frontmatter.gruppenaustellung}
