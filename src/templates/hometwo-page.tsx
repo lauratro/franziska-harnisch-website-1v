@@ -9,6 +9,7 @@ import PictureHometwo from '../components/PictureHometwo/pictureHometwo';
 import PictureHomeMob from '../components/PictureHomeMob/PictureHomeMob';
 import PageContainer from '../components/PageContainer';
 import SEO from '../components/SEO';
+import {IAbout} from "../templates/about-page"
 
 const useStyles = makeStyles((theme) => ({
   largeScreen: {
@@ -24,8 +25,28 @@ display:"block",
     },
   },
 }));
-
-export const HometwoTemplate = ({ image, title, event, intro, location }) => {
+interface IHome{
+  home:{
+    image:string,
+    title:string,
+    description:string,
+    event:{
+      comingTitle: string,
+      futureEvent: string,
+      lastTitle: string,
+      lastEvent:string,
+    },
+    intro:{
+      blurbs:{
+        image:string,
+        text:string,
+        link:string,
+      }[]
+    },
+    location:IAbout["about"]["location"]
+  }
+}
+export const HometwoTemplate:React.FC<IHome["home"]> = ({ image, title, event, intro, location }) => {
   console.log(intro.blurbs);
   const classes = useStyles();
   return (
@@ -64,6 +85,7 @@ const LauraTest: React.FC<any> = ({ data, location }) => {
       />
       <HometwoTemplate
         location={location}
+        description={frontmatter.description}
         image={frontmatter.image}
         title={frontmatter.title}
         event={frontmatter.event}
@@ -73,7 +95,7 @@ const LauraTest: React.FC<any> = ({ data, location }) => {
   );
 };
 export default LauraTest;
-HometwoTemplate.propTypes = {
+/* HometwoTemplate.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   event: PropTypes.shape({
@@ -85,7 +107,7 @@ HometwoTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
-};
+}; */
 export const pageQuery = graphql`
   query HometwoTemplate($id: String!) {
     markdownRemark(id: { eq: $id }) {
