@@ -5,7 +5,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
 import {EventsFrontPage} from '../components/EventsFrontPage/EventsFrontPage';
-import PictureHometwo from '../components/PictureHometwo/pictureHometwo';
+import {PictureHometwo} from '../components/PictureHometwo/pictureHometwo';
 import PictureHomeMob from '../components/PictureHomeMob/PictureHomeMob';
 import PageContainer from '../components/PageContainer';
 import SEO from '../components/SEO';
@@ -30,14 +30,8 @@ export interface IHome{
     image:string,
     title:string,
     description:string,
-    event:IEv["event"]
-      intro:{
-      blurbs:{
-        image:string,
-        text:string,
-        link:string,
-      }[]
-    },
+    event:IEv["event"],
+      intro:IPic["intro"],
     location:IAbout["about"]["location"]
   }
 }
@@ -48,6 +42,15 @@ export interface IEv{
     lastTitle: string,
     lastEvent:string,
   },
+}
+export interface IPic{
+intro:{
+    blurbs:{
+      image:string,
+      text:string,
+      link:string,
+    }[]
+}
 }
 export const HometwoTemplate:React.FC<IHome["home"]> = ({ image, title, event, intro, location }) => {
   console.log(intro.blurbs);
@@ -67,7 +70,7 @@ export const HometwoTemplate:React.FC<IHome["home"]> = ({ image, title, event, i
       }} */
       >
         <EventsFrontPage event={event} />
-        <div className={classes.largeScreen}><PictureHometwo pic={intro.blurbs} /></div>
+        <div className={classes.largeScreen}><PictureHometwo intro={intro} /></div>
         <div className={classes.mobScreen}><PictureHomeMob pic={intro.blurbs} /></div>
    
       </div>

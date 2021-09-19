@@ -3,6 +3,7 @@ import { Grid, Card, Link } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PreviewCompatibleImage from '../DisplayPictureAdapter/DisplayPictureAdapter';
 import { NavBarContext } from '../../context/NavbarContext';
+import { IPic} from "../../templates/hometwo-page"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -76,10 +77,17 @@ const negTextWidth = {
   textAlign: 'justify',
   zIndex: '-1000',
 };
-
-export default function PictureHometwo({ pic }) {
-  console.log('pic', pic[0].image);
-  const [newArray, setNewArray] = useState([]);
+interface INew{
+  array:{
+    image:string,
+    text:string,
+    link:string
+  }
+}
+export const PictureHometwo: React.FC<IPic>=({ intro }) =>{
+  console.log('pic', intro.blurbs[0].image);
+  const [newArray, setNewArray] = useState<IPic | any[]>();
+  const [pic, setPic]=useState(intro.blurbs)
   useEffect(() => {
     setExit(false);
   }, []);
@@ -90,7 +98,7 @@ export default function PictureHometwo({ pic }) {
   const { negZIndex } = useContext(NavBarContext);
 
   const shuffle = (array) => {
-    var currentIndex = array.length,
+    var currentIndex: number = array.length,
       randomIndex;
 
     // While there remain elements to shuffle...
@@ -110,10 +118,10 @@ export default function PictureHometwo({ pic }) {
 
   useEffect(() => {
     setNewArray(shuffle(pic));
-    console.log(newArray);
+    console.log("newArray",newArray);
   }, []);
 
-  console.log('pic', newArray);
+  console.log('picnew', newArray);
   if (newArray.length > 0) {
     return (
       <Grid container className={classes.externalContainer}>
@@ -141,7 +149,7 @@ export default function PictureHometwo({ pic }) {
             className={
               exit ? classes.animatedItem : classes.animatedItemExiting
             }
-            style={negTextWidth}
+            style  ={negTextWidth}
           >
             {newArray[0].text}
           </p>
