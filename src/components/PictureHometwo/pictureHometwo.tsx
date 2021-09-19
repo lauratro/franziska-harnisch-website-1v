@@ -63,14 +63,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const textWidth = {
+const textWidth: React.CSSProperties  = {
   position: 'relative',
   maxWidth: 240,
   textAlign: 'justify',
   padding:5,
 };
 
-const negTextWidth = {
+const negTextWidth: React.CSSProperties   = {
   position: 'relative',
   maxWidth: 240,
   padding:5,
@@ -78,15 +78,26 @@ const negTextWidth = {
   zIndex: '-1000',
 };
 interface INew{
-  array:{
+  0:{
     image:string,
     text:string,
     link:string
-  }
+  },
+  1:{
+    image:string,
+    text:string,
+    link:string
+  },
+  2:{
+    image:string,
+    text:string,
+    link:string
+  },
+  length:number,
 }
 export const PictureHometwo: React.FC<IPic>=({ intro }) =>{
   console.log('pic', intro.blurbs[0].image);
-  const [newArray, setNewArray] = useState<IPic | any[]>();
+  const [newArray, setNewArray] = useState<INew |any[]>([]);
   const [pic, setPic]=useState(intro.blurbs)
   useEffect(() => {
     setExit(false);
@@ -132,7 +143,7 @@ export const PictureHometwo: React.FC<IPic>=({ intro }) =>{
             style={{ borderRadius: 5, width: 240, height:200, zIndex: '-1000' }}
             onMouseOver={() => setExit((prev) => !prev)}
             className={exit ? classes.imageMask : classes.imageNoMask}
-            src={newArray[0].image}
+            src={(newArray[0] as any).image}
           />
         ) : (
           <Link href={newArray[0].link}>
@@ -213,7 +224,7 @@ export const PictureHometwo: React.FC<IPic>=({ intro }) =>{
         {negZIndex ? (
          
           <img
-            style={{ borderRadius: 5, width: 240, height:200, zIndex: '-1000' }}
+            style={{ borderRadius: 5, width: 240, height:200, zIndex:parseInt('-1000')  }}
             onMouseOver={() => setThirdPic((prev) => !prev)}
             className={thirdPic ? classes.imageMask : classes.imageNoMask}
             src={newArray[2].image}
