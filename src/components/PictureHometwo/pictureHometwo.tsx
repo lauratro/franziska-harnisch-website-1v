@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PreviewCompatibleImage from '../DisplayPictureAdapter/DisplayPictureAdapter';
 import { NavBarContext } from '../../context/NavbarContext';
 import { IPic} from "../../templates/hometwo-page"
-
+import ImgCloudinary from '../ImgCloudinary';
 
 const useStyles = makeStyles((theme) => ({
   imageMask: {
@@ -144,6 +144,8 @@ export const PictureHometwo: React.FC<IPic>=({ intro }) =>{
             onMouseOver={() => setExit((prev) => !prev)}
             className={exit ? classes.imageMask : classes.imageNoMask}
             src={(newArray[0] as any).image}
+            quality={80}
+            width={600}
           />
         ) : (
           <Link href={newArray[0].link}>

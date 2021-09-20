@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import grey from '@material-ui/core/colors/grey';
 import { useLocation } from '@reach/router';
-
+import ImgCloudinary from '../ImgCloudinary';
 const useStyles = makeStyles(() => ({
   root: {
     width: '240px',
@@ -66,13 +66,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const WorksImage = ({ imageInfo, title, slug }) => {
+const WorksImage = ({ imageInfo, title, slug, quality, width }) => {
   const classes = useStyles();
   const location = useLocation().pathname;
-
+  const qualityTransfomation = imageInfo.replace('q_100,w_2400', `q_${quality},w_${width}`)
   return (
     <div
       className={classes.root}
+
       // style={{
       //   width: '240px',
       //   display: 'inline-block',
@@ -82,7 +83,7 @@ const WorksImage = ({ imageInfo, title, slug }) => {
         <Link className="title has-text-primary is-size-4" to={slug}>
           {location === '/workdetails' && (
             <div className={classes.container}>
-              <img src={imageInfo} className={classes.image} />
+                <ImgCloudinary width={width} quality={quality} title={title} src={qualityTransfomation} className={classes.image} />
               <div className={classes.middle}>
                 <div className={classes.content}>{title}</div>
               </div>
@@ -91,7 +92,7 @@ const WorksImage = ({ imageInfo, title, slug }) => {
           {location !== '/workdetails' && (
             <Box className={classes.widthImg}>
               <div className={classes.container}>
-                <img src={imageInfo} className={classes.image} />
+              <ImgCloudinary width={width} quality={quality} title={title} src={qualityTransfomation} className={classes.image} />
                 <div className={classes.middle}>
                   <div className={classes.content}>{title}</div>
                 </div>
